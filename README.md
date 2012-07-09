@@ -24,3 +24,8 @@ Installation
 7.  Start CouchDB if you haven't already.  Should be on default port 5984.
 8.  You should now be able to hit `http://localhost` which should create the Home page for you.
 9.  Optionally, edit `js/wiki.js` to have the `DEBUG` flag set to false, which will hide some crap.
+
+Running the Tests
+-----------------
+
+If they existed, they'd be written in QUnit because that is how I roll, unfortunately I haven't gotten to it yet.
