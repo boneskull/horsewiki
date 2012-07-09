@@ -1,0 +1,50 @@
+<h1>
+    <a href="#/{{page.title}}" ng-show="rev">{{page.title}}</a>
+    <span ng-hide="rev">{{page.title}}</span>
+    <span ng-show="rev">(rev {{rev}})</span>
+</h1>
+<hr/>
+
+<div ch-show="conflict" class="hide alert alert-block alert-error">
+    <h4>Conflict</h4>
+
+    <p>Oh noes! There was a conflict during editing. Would you like to:</p>
+    <button class="btn btn-danger" ng-click="keep()">Keep Mine; Blast Other Changes</button>
+    <button class="btn" ng-click="discard()">Discard My Changes</button>
+</div>
+
+<div ng-repeat="paragraph in page.data">
+    <ng-switch on="edit[paragraph.id]">
+        <div ng-switch-when="true">
+            <textarea ng-model="paragraph.text" ch-editor></textarea>
+        </div>
+        <p ng-switch-default ng-click="enableEditor(paragraph.id)" ng-bind-html-unsafe="paragraph.text|markup"></p>
+
+    </ng-switch>
+</div>
+
+<hr/>
+
+<div ng-show="page._id && !rev">
+    <button ng-click="addParagraph()" class="btn"><span class="icon-plus-sign"></span> Paragraph</button>
+
+    <button ch-debug ng-click="createConflict()" class="btn btn-danger"><span class="icon-fire icon-white"></span>
+        Create
+        Conflict
+    </button>
+    <hr/>
+</div>
+
+<div ng-show="revs">
+    <form class="form-inline">
+        <select ng-model="selectedRevision" ng-options="rev|date:'medium' for rev in revs"></select>
+        <button class="btn" ng-click="viewRevision()">View</button>
+    </form>
+    <hr/>
+</div>
+
+<footer ch-debug>
+
+    <pre>{{page}}</pre>
+</footer>
+
