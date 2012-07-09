@@ -21,9 +21,10 @@ Installation
 4.  Copy everything in the horsewiki dir into `/usr/local/html` or whatever dir you want to host this from.
 5.  Stop Apache, or if you're on Mac, stop the web sharing service.
 6.  Start nginx by running `sudo /usr/local/sbin/nginx`
-7.  Start CouchDB if you haven't already.  Should be on default port 5984.
-8.  You should now be able to hit `http://localhost` which should create the Home page for you.
-9.  Optionally, edit `js/wiki.js` to have the `DEBUG` flag set to false, which will hide some crap.
+7.  Start CouchDB if you haven't already.  Should be on default port 5984.  
+8.  Create the `wiki` database in CouchDB.
+9.  You should now be able to hit `http://localhost` which should create the Home page for you.
+10.  Optionally, edit `js/wiki.js` to have the `DEBUG` flag set to false, which will hide some crap.
 
 Running the Tests
 -----------------
