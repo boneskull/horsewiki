@@ -1,10 +1,11 @@
-/*global module, test, ok, strictEqual, equal, angular, COUCHDB_URL*/
+/*global module, test, ok, strictEqual, equal, angular, COUCHDB_URL, sinon*/
 (function () {
     'use strict';
 
     var injector = angular.injector(['ng', 'ngMock', 'wiki']);
 
     function setup() {
+        sinon.config.useFakeTimers = false;
     }
 
     function teardown() {

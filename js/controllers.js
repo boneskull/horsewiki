@@ -3,9 +3,6 @@
 (function () {
     'use strict';
 
-    var APP_NAME = 'HorseWiki';
-    var APP_VERSION = 0.1;
-
     window.PageCtrl = function ($scope, $routeParams, $location, Page, OldPage, Changes, UniqueIdentifier) {
 
         /**

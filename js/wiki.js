@@ -1,21 +1,22 @@
 /*global angular, $, CodeMirror, Base64 */
 
 // url to couchdb
-var COUCHDB_URL = '/couchdb/wiki';
+window.COUCHDB_URL = '/couchdb/wiki';
+
+// debug mode flag
+window.DEBUG = true;
+
+// app name...
+window.APP_NAME = 'HorseWiki';
+
+// version
+window.APP_VERSION = 0.1;
 
 (function () {
     'use strict';
 
-    // debug mode flag
-    var DEBUG = true;
-
     // main module; requires ngResource to use $resource service
-    var wiki;
-    if (angular.isDefined(window.TESTING) && window.TESTING) {
-        wiki = angular.module('wiki', ['ngResource', 'ngMock']);
-    } else {
-        wiki = angular.module('wiki', ['ngResource']);
-    }
+    var wiki = angular.module('wiki', ['ngResource']);
 
     /**
      * Page factory.  Gets/creates/saves pages.
@@ -25,7 +26,10 @@ var COUCHDB_URL = '/couchdb/wiki';
      * to specify an ID and have CouchDB create one for you, use POST.
      */
     wiki.factory('Page', ['$resource', function ($resource) {
-        return $resource(COUCHDB_URL + '/:id', {}, {create: {method: 'PUT'}, save: {method: 'PUT'}});
+        return $resource(COUCHDB_URL + '/:id', {}, {
+            create: {method: 'PUT'},
+            save: {method: 'PUT'}
+        });
     }]);
 
     wiki.factory('OldPage', ['$resource', function ($resource) {
