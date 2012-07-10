@@ -3,9 +3,6 @@
     'use strict';
 
     var injector = angular.injector(['ng', 'ngMock', 'wiki']);
-    function getService(service) {
-        return injector.get(service);
-    }
 
     function setup() {
     }
@@ -25,24 +22,20 @@
 
     module('factories', init);
 
-    test('UniqueIdentifier', 1, function() {
-        var output = getService('UniqueIdentifier')();
+    test('UniqueIdentifier', 1, function () {
+        var output = injector.get('UniqueIdentifier')();
         var regex = /.{8}-.{4}-.{4}-.{4}-.{12}/;
 
-        ok(output.match(regex), 'assert UniqueIdentifier outputs an id');
+        ok(output.match(regex), 'assert UniqueIdentifier outputs a GUID');
     });
 
-    test('Page', 2, function() {
-        var Page = getService('Page');
-        var id = 'Foo';
-        var title = 'Foo';
-        var createdon = Date.now();
-        var response = {foo: 'bar'};
-        var $httpBackend = getService('$httpBackend');
+    test('Page', 2, function () {
+        var Page = injector.get('Page'), id = 'Foo', title = 'Foo', createdon = Date.now(),
+            response = {foo: 'bar'}, $httpBackend = injector.get('$httpBackend'), page, result;
 
         $httpBackend.expect('PUT', COUCHDB_URL + '/' + id, {title: title, createdon: createdon}).respond(200, response);
 
-        var page = Page.create({id: id}, {title: title, createdon: createdon});
+        page = Page.create({id: id}, {title: title, createdon: createdon});
 
         $httpBackend.flush();
 
@@ -50,9 +43,11 @@
 
         $httpBackend.expect('PUT', COUCHDB_URL + '/' + id, {title: title, createdon: createdon}).respond(200, response);
 
-        var result = Page.save({id: id}, {title: title, createdon: createdon});
+        result = Page.save({id: id}, {title: title, createdon: createdon});
 
-        equal(result.title, title, 'assert correct method used to save');
+        $httpBackend.flush();
+
+        equal(result.foo, response.foo, 'assert correct method used to save');
 
     });
 })();
