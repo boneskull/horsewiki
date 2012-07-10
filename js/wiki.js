@@ -1,16 +1,21 @@
 /*global angular, $, CodeMirror, Base64 */
 
+// url to couchdb
+var COUCHDB_URL = '/couchdb/wiki';
+
 (function () {
     'use strict';
-
-    // url to couchdb
-    var COUCHDB_URL = '/couchdb/wiki';
 
     // debug mode flag
     var DEBUG = true;
 
     // main module; requires ngResource to use $resource service
-    var wiki = angular.module('wiki', ['ngResource']);
+    var wiki;
+    if (angular.isDefined(window.TESTING) && window.TESTING) {
+        wiki = angular.module('wiki', ['ngResource', 'ngMock']);
+    } else {
+        wiki = angular.module('wiki', ['ngResource']);
+    }
 
     /**
      * Page factory.  Gets/creates/saves pages.
