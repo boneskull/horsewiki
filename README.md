@@ -3,6 +3,21 @@ HorseWiki
 
 HorseWiki is a wiki developed entirely in JavaScript for use with CouchDB.
 
+This is mainly just an experiment or an example;  I'm trying to learn some technologies new to me such as long polling, Twitter Bootstrap and Angular 1.0. This project uses:
+
+* [AngularJS](https://github.com/angular/angular.js) as the core framework
+* [CouchDB](http://couchdb.apache.org/) as the backend database
+* [jQuery](https://github.com/jquery/jquery) for some DOM manipulation
+* [QUnit](https://github.com/jquery/qunit/) for unit tests
+* [Sinon](http://sinonjs.org/) for mocks
+* [Twitter Bootstrap](https://github.com/twitter/bootstrap/) for the look & feel
+* [CodeMirror](http://codemirror.net/) for the text editor
+* [Some Base64 lib](http://www.onicos.com/staff/iz/amuse/javascript/expert/base64.txt) I found by Masanao Izumo which I needed to support revision history.
+
+and optionally,
+
+* [nginx](http://nginx.org) as the web & proxy server
+
 Installation
 ------------
 
