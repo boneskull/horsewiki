@@ -29,4 +29,6 @@ Installation
 Running the Tests
 -----------------
 
-If they existed, they'd be written in QUnit because that is how I roll, unfortunately I haven't gotten to it yet.
+Tests are written in QUnit because I don't dig Jasmine.
+
+1.  Assuming you've done the above, hit `http://localhost/test/test_wiki.html`.
